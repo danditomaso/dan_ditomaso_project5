@@ -13,9 +13,9 @@ class Card extends Component {
     return (
       <div
         className={
-          "card" +
-          (!this.props.close ? "selected" : "") +
-          (this.props.complete ? " matched" : "")
+          "card"
+          // (!this.props.close ? "selected" : "") +
+          // (this.props.complete ? " matched" : "")
         }
         onClick={this.props.click}
         id={this.props.id}

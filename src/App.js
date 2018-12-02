@@ -51,6 +51,7 @@ class App extends Component {
     const flattenedArr = util.flattenArr(cardsArr);
     this.setState({ shuffledCards: util.randomizeArray(flattenedArr) });
   };
+
   checkForMatch = (cardId) => {
     this.setState({
       flippedCards: this.state.shuffleCards[cardId]
@@ -83,8 +84,8 @@ class App extends Component {
                 id={index}
                 name={card.character}
                 click={this.handleClick}
-                close={this.checkForMatch}
-                solved={this.checkSolved}
+                // close={this.checkForMatch}
+                // solved={this.checkSolved}
               />
             );
           })}
