@@ -4,22 +4,14 @@ class Card extends Component {
   constructor() {
     super();
     this.state = {
-      isFlipped: false
+      // isFlipped: false
     };
   }
 
   render(event) {
     // console.log(this.props);
     return (
-      <div
-        className={
-          "card"
-          // (!this.props.close ? "selected" : "") +
-          // (this.props.complete ? " matched" : "")
-        }
-        onClick={this.props.click}
-        id={this.props.id}
-      >
+      <div className="card" onClick={this.props.click} id={this.props.id}>
         <div className="front" id={this.props.id}>
           ?
         </div>

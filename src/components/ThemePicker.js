@@ -1,16 +1,37 @@
 import React, { Component } from "react";
+import api from "./api";
 
-const ThemePicker = (props) => {
-  return (
-    <div className="ThemePicker">
-      <label htmlFor="ThemePicker">Select A Card Theme</label>
-      <select name="ThemePicker" id="ThemePicker">
-        {props.themes.map((theme) => {
-          return <option value={theme}>{theme}</option>;
+class ThemePicker extends Component {
+  constructor() {
+    super();
+    this.state = {
+      api: api,
+      themes: []
+    };
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+  };
+
+  render() {
+    return (
+      <div className="ThemePicker">
+        <label htmlFor="ThemePicker">Select A Card Theme</label>
+        {this.props.themes.map((theme) => {
+          return (
+            <div className="theme-picker">
+              <button onChange={this.handleChange} value={theme} id={theme}>
+                {theme}
+              </button>
+              <label htmlFor={theme} />
+            </div>
+          );
         })}
-      </select>
-    </div>
-  );
-};
-
+      </div>
+    );
+  }
+}
 export default ThemePicker;

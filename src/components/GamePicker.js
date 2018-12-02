@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import * as util from "./helpers";
 import api from "./api";
 import ThemePicker from "./ThemePicker";
 
@@ -22,16 +21,16 @@ class GamePicker extends Component {
     });
   };
 
-  updateThemePickerOptions = () => {
-    // const formattedTheme = Object.entries(this.state.api);
-    this.setState({
-      themes: Object.keys(this.state.api)
-    });
-  };
-
   gotoGame = (e) => {
     e.preventDefault();
     this.props.history.push(`/game/`);
+  };
+
+  updateThemePickerOptions = () => {
+    const formattedTheme = Object.entries(this.state.api);
+    this.setState({
+      themes: Object.keys(this.state.api)
+    });
   };
 
   componentDidMount() {
@@ -41,8 +40,8 @@ class GamePicker extends Component {
   render() {
     return (
       <div className="GamePicker">
-        <h1>Welcome to Memory Game!!!!!!</h1>
-        <ThemePicker themes={this.state.themes} />
+        <h1>Welcome to the Memory Game!</h1>
+
         <form action="" className="GamePicker-Form" onSubmit={this.gotoGame}>
           <label htmlFor="name">Enter Name:</label>
           <input
@@ -78,6 +77,7 @@ class GamePicker extends Component {
             value="hard"
             onChange={this.handleChange}
           />
+          <ThemePicker themes={this.state.themes} />
           <label htmlFor="gameSubmit">Lets Go!</label>
           <button type="submit" id="gameSubmit" />
         </form>

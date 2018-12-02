@@ -238,11 +238,39 @@ body {
   perspective: 1000px;
 }
 
+.GamePicker {
+  font-family: "Delius", cursive;
+  font-size: 2rem;
+}
+
+.ThemePicker {
+  font-family: "Muli", cursive;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ThemePicker button {
+  margin: 10px;
+  box-shadow: inset;
+  background: #ededed;
+  border: 1px solid #ccc;
+  padding: 10px 50px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.ThemePicker label {
+  margin: 10px;
+  padding: 10px 50px;
+}
+
 /* Card */
 .card {
   position: relative;
-  width: 125px;
-  height: 125px;
+  width: 100px;
+  height: 100px;
   padding: 5px;
   margin: 5px;
   font-size: 50px;
@@ -280,19 +308,17 @@ body {
 
 .selected {
   transform: rotateY(180deg);
-  transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
 }
 
 .card .card-image {
   object-fit: contain;
-  height: 125px;
-  width: 125px;
+  height: 100px;
+  width: 100px;
 }
 
 .Footer {
   background-color: #282c34;
-  /* min-height: 100vh; */
   position: fixed;
   font-size: 2rem;
   right: 0;

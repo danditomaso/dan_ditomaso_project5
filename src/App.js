@@ -53,20 +53,28 @@ class App extends Component {
   };
 
   checkForMatch = (cardId) => {
-    this.setState({
-      flippedCards: this.state.shuffleCards[cardId]
-    });
-    console.log(this.state.flippedCards);
+    if (this.state.flippedCards.length !== 1) {
+      this.setState({
+        flippedCards: this.state.shuffledCards[cardId]
+      });
+    } else {
+      console.log("push");
+    }
   };
+
   checkForSolved = (cardId) => {};
 
-  handleClick(event) {
+  handleClick = (event) => {
     event.preventDefault();
     const cardId = event.target.id;
     console.log(event.target.id);
-    this.checkForMatch(cardId);
-  }
-
+    if (this.state.flippedCards.length === 2) {
+      console.log("hit timeout");
+      setTimeout(() => {
+        this.checkForMatch(cardId);
+      }, 800);
+    }
+  };
   componentDidMount() {
     this.getCardImages();
   }
@@ -84,6 +92,10 @@ class App extends Component {
                 id={index}
                 name={card.character}
                 click={this.handleClick}
+                flipped={this.state.shuffledCards.includes([
+                  this.state.flippedCards
+                ])}
+                image={card.image}
                 // close={this.checkForMatch}
                 // solved={this.checkSolved}
               />
