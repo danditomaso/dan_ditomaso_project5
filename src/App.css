@@ -240,7 +240,7 @@ body {
 
 /* GameBoard */
 .GameBoard {
-  width: 40vw;
+  width: 45vw;
   display: flex;
   flex-wrap: wrap;
   margin: auto;
