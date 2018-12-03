@@ -1,14 +1,10 @@
-import React, { Component } from "react";
-
-class Score extends Component {
-  constructor() {
-    console.log("the constructor was called");
-    super();
-    this.state = {};
-  }
-  render() {
-    return React.Fragment;
-  }
-}
+import React from "react";
+const Score = (props) => {
+  return (
+    <h4 className="score">
+      {props.name} Score: {props.score}
+    </h4>
+  );
+};
 
 export default Score;

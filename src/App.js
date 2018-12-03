@@ -17,7 +17,7 @@ class App extends Component {
     super();
     this.state = {
       api: api,
-      gameTitle: "Memory Game",
+      gameTitle: "Memory Game!",
       currentAPI: api.simpsons.url,
       score: 0,
       timer: 0,
@@ -25,8 +25,9 @@ class App extends Component {
       cards: [],
       shuffledCards: [],
       numOfRequestedImages: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      solvedCards: [],
-      flippedCards: []
+      correctMatches: [],
+      flippedCards: [],
+      selectedCard: []
     };
   }
 
@@ -53,51 +54,62 @@ class App extends Component {
   };
 
   checkForMatch = (cardId) => {
-    if (this.state.flippedCards.length !== 1) {
-      this.setState({
-        flippedCards: this.state.shuffledCards[cardId]
-      });
+    if (this.state.selectedCard.length <= 1) {
+      this.setState({ selectedCard: [...this.state.selectedCard, cardId] });
     } else {
-      console.log("push");
+      this.checkForSolved();
     }
   };
 
-  checkForSolved = (cardId) => {};
+  checkForSolved = () => {
+    const { selectedCard, shuffledCards, score, correctMatches } = this.state;
+    if (
+      shuffledCards[selectedCard[0]].character ==
+      shuffledCards[selectedCard[1]].character
+    ) {
+      console.log("match found");
+      this.setState({
+        correctMatches: [...correctMatches, selectedCard],
+        score: score + 1,
+        selectedCard: []
+      });
+    } else {
+      console.log("else state hit on check for solved.");
+      this.setState({ selectedCard: [] });
+    }
+  };
 
   handleClick = (event) => {
     event.preventDefault();
     const cardId = event.target.id;
-    console.log(event.target.id);
-    if (this.state.flippedCards.length === 2) {
-      console.log("hit timeout");
-      setTimeout(() => {
-        this.checkForMatch(cardId);
-      }, 800);
-    }
+    this.checkForMatch(cardId);
   };
+
   componentDidMount() {
     this.getCardImages();
   }
 
   render() {
+    const { selectedCard, correctMatches, shuffledCards } = this.state;
     return (
       <div className="App">
         <header className="App-header">
-          <Header title={this.state.gameTitle} />
+          <Header
+            title={this.state.gameTitle}
+            currentScore={this.state.score}
+          />
         </header>
         <div className="GameBoard">
-          {this.state.shuffledCards.map((card, index) => {
+          {shuffledCards.map((card, index) => {
             return (
               <Card
+                key={card.image + card.name + index}
                 id={index}
                 name={card.character}
                 click={this.handleClick}
-                flipped={this.state.shuffledCards.includes([
-                  this.state.flippedCards
-                ])}
+                selected={selectedCard}
+                solved={correctMatches}
                 image={card.image}
-                // close={this.checkForMatch}
-                // solved={this.checkSolved}
               />
             );
           })}

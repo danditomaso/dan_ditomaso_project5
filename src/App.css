@@ -196,7 +196,7 @@ body {
 .App {
   text-align: center;
   padding: 35px;
-  width: 50%;
+  /* width: 50%; */
   margin: 20px auto;
   border-radius: 10px;
 }
@@ -222,20 +222,31 @@ body {
   display: block;
 }
 
-.GamePicker input,
 .GamePicker label {
   display: block;
-  color: white;
+  color: #eee;
+}
+
+.gamw .GamePicker input {
+  display: block;
+  color: #333;
+  margin: auto;
+  width: 25%;
+}
+
+.GameBoard input[type="radio"] {
+  display: none;
 }
 
 /* GameBoard */
 .GameBoard {
-  width: 45vw;
+  width: 40vw;
   display: flex;
   flex-wrap: wrap;
   margin: auto;
   justify-content: space-evenly;
   perspective: 1000px;
+  position: relative;
 }
 
 .GamePicker {
@@ -254,15 +265,18 @@ body {
 
 .ThemePicker button {
   margin: 10px;
+  display: block;
   box-shadow: inset;
   background: #ededed;
   border: 1px solid #ccc;
-  padding: 10px 50px;
+  padding: 10px;
+  width: 200px;
   border-radius: 5px;
+  margin: auto;
   cursor: pointer;
 }
 .ThemePicker label {
-  margin: 10px;
+  margin: 20px;
   padding: 10px 50px;
 }
 
@@ -317,13 +331,67 @@ body {
   width: 100px;
 }
 
+.score {
+  position: absolute;
+  top: 0;
+  right: 50px;
+}
+
 .Footer {
   background-color: #282c34;
   position: fixed;
-  font-size: 2rem;
+  font-size: 1.6rem;
   right: 0;
   left: 0;
   bottom: 25px;
   text-align: center;
   color: white;
+}
+@media (max-width: 1413px) {
+  .GameBoard {
+    width: 60vw;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-around;
+    perspective: 1000px;
+  }
+}
+@media (max-width: 1247px) {
+  .GameBoard {
+    width: 60vw;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-evenly;
+    perspective: 1000px;
+  }
+  .card {
+    width: 75px;
+    height: 75px;
+  }
+  .card .card-image {
+    object-fit: contain;
+    height: 75px;
+    width: 75px;
+  }
+}
+@media (max-width: 1120px) {
+  .GameBoard {
+    width: 50vw;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-evenly;
+    perspective: 1000px;
+  }
+  .card {
+    width: 100px;
+    height: 100px;
+  }
+  .card .card-image {
+    object-fit: contain;
+    height: 100px;
+    width: 100px;
+  }
 }

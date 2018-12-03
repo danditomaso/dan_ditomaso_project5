@@ -19,6 +19,6 @@ export const randomizeArray = (arr) => {
     arr[i] = arr[j];
     arr[j] = temp;
   }
-  console.log(arr);
+  // console.log(arr);
   return arr;
 };

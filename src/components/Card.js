@@ -1,25 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
+import { stringify } from "querystring";
+import { flattenArr } from "./helpers";
 
-class Card extends Component {
-  constructor() {
-    super();
-    this.state = {
-      // isFlipped: false
-    };
-  }
-
-  render(event) {
-    // console.log(this.props);
-    return (
-      <div className="card" onClick={this.props.click} id={this.props.id}>
-        <div className="front" id={this.props.id}>
-          ?
-        </div>
-        <div className="back" id={this.props.id}>
-          <img className="card-image" src={this.props.cardImage} />
-        </div>
+const Card = (props) => {
+  const { selected, id, solved, image, click } = props;
+  // console.log(solved);
+  const solvedArr = flattenArr(solved);
+  const match =
+    selected.includes(id.toString()) || solvedArr.includes(id.toString());
+  return (
+    <div className={match ? "card selected" : "card"} onClick={click} id={id}>
+      <div className="front" id={id}>
+        ?
       </div>
-    );
-  }
-}
+      <div className="back" id={id}>
+        <img className="card-image" src={image} />
+      </div>
+    </div>
+  );
+};
 export default Card;

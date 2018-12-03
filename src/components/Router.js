@@ -8,6 +8,7 @@ const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={GamePicker} />
+
       <Route path="/game/" component={App} />
       <Route component={NotFound} />
     </Switch>

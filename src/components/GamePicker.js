@@ -9,13 +9,14 @@ class GamePicker extends Component {
       api: api,
       currentAPI: api.simpsons.url,
       difficulty: "medium",
-      name: "",
+      name: "Dan",
       themes: []
     };
   }
   // myInput = React.createRef();
 
   handleChange = (e) => {
+    e.preventDefault();
     this.setState({
       [e.target.id]: e.target.value
     });
@@ -41,7 +42,6 @@ class GamePicker extends Component {
     return (
       <div className="GamePicker">
         <h1>Welcome to the Memory Game!</h1>
-
         <form action="" className="GamePicker-Form" onSubmit={this.gotoGame}>
           <label htmlFor="name">Enter Name:</label>
           <input
@@ -52,34 +52,35 @@ class GamePicker extends Component {
             value={this.state.name}
             onChange={this.handleChange}
           />
-          <label htmlFor="easy" />
+          <label htmlFor="easy">Easy</label>
           <input
             type="radio"
             name="difficulty"
-            id="easy"
+            id="difficulty"
             value="easy"
             onChange={this.handleChange}
           />
-          <label htmlFor="medium" />
+          <label htmlFor="medium">Medium</label>
           <input
             type="radio"
             name="difficulty"
-            id="medium"
+            id="difficulty"
             value="medium"
             checked
             onChange={this.handleChange}
           />
-          <label htmlFor="hard" />
+          <label htmlFor="hard">Hard</label>
           <input
             type="radio"
             name="difficulty"
-            id="hard"
+            id="difficulty"
             value="hard"
             onChange={this.handleChange}
           />
           <ThemePicker themes={this.state.themes} />
-          <label htmlFor="gameSubmit">Lets Go!</label>
-          <button type="submit" id="gameSubmit" />
+          <button type="submit" id="gameSubmit">
+            Lets Play!
+          </button>
         </form>
       </div>
     );
